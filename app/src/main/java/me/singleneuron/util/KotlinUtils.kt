@@ -66,25 +66,25 @@ fun dumpIntent(intent: Intent) {
 
 fun checkCardMsg(originString: String): CardMsgCheckResult {
     //if (BuildConfig.DEBUG||LicenseStatus.isInsider()) return CardMsgCheckResult(true)
-    try {
-        //Utils.logd("trying: $string")
-        Utils.logd("origin string: $originString")
-        val string = decodePercent(originString)
-        Utils.logd("decode string: $string")
-        val blackListString = CardMsgList.getInstance().invoke()
-        val blackList = Gson().fromJson<HashMap<String, String>>(blackListString, object : TypeToken<HashMap<String, String>>() {}.type)
-        Utils.logd(Gson().toJson(blackList))
-        for (rule in blackList) {
+    //try {
+    //    //Utils.logd("trying: $string")
+     //   Utils.logd("origin string: $originString")
+//         val string = decodePercent(originString)
+//         Utils.logd("decode string: $string")
+//         val blackListString = CardMsgList.getInstance().invoke()
+//         val blackList = Gson().fromJson<HashMap<String, String>>(blackListString, object : TypeToken<HashMap<String, String>>() {}.type)
+//         Utils.logd(Gson().toJson(blackList))
+//         for (rule in blackList) {
             //Utils.logd("checking: $rule")
-            if (Regex(rule.value, setOf(RegexOption.IGNORE_CASE,RegexOption.DOT_MATCHES_ALL)).containsMatchIn(string)) {
-                return CardMsgCheckResult(false, rule.key)
-            }
-        }
+//             if (Regex(rule.value, setOf(RegexOption.IGNORE_CASE,RegexOption.DOT_MATCHES_ALL)).containsMatchIn(string)) {
+//                 return CardMsgCheckResult(false, rule.key)
+//             }
+//         }
         return CardMsgCheckResult(true)
-    } catch (e: Exception) {
-        Utils.log(e)
-        return CardMsgCheckResult(false, "Failed: $e")
-    }
+//     } catch (e: Exception) {
+//         Utils.log(e)
+//         return CardMsgCheckResult(false, "Failed: $e")
+//     }
 }
 
 private fun decodePercent(string:String): String {
